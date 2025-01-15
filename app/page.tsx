@@ -4,14 +4,14 @@ import React, { useRef } from "react";
 import { SparklesCore } from "../components/ui/sparkles";
 import Image from "next/image";
 import kashifPic from "../public/kashif.jpg";
-import About from "../components/About";
-import Services from "../components/Services";
-import { Navbar } from "../components/Navbar";
-import Skills from "../components/Skills";
-import Resume from "../components/Resume";
-import Portfolio from "../components/Portfolio";
-import ContactUs from "../components/ContactUs";
-import Footer from "../components/ui/Footer";
+import About from "@/components/About";
+import Services from "@/components/Services";
+import { Navbar } from "@/components/Navbar";
+import Skills from "@/components/Skills";
+import Resume from "@/components/Resume";
+import Portfolio from "@/components/Portfolio";
+import ContactUs from "@/components/ContactUs";
+import Footer from "@/components/ui/Footer";
 
 export default function Home() {
 
