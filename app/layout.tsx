@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import AnimatedCursor from "react-animated-cursor";
+// import AnimatedCursor from "react-animated-cursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,15 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <AnimatedCursor
-          innerSize={15}
-          outerSize={15}
-          color="255, 255 ,255"
-          outerAlpha={0.4}
-          innerScale={0.7}
-          outerScale={5}
-        /> */}
-         <AnimatedCursor
+         {/* <AnimatedCursor
             innerSize={15}
             outerSize={15}
             color="255, 255 ,255"
@@ -56,7 +48,7 @@ export default function RootLayout({
               'button',
               '.link'
             ]}
-          />
+          /> */}
         {children}
       </body>
     </html>
