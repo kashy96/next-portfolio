@@ -6,7 +6,7 @@ import Image from "next/image";
 import kashifPic from "../public/kashif.jpg";
 import About from "../components/About";
 import Services from "../components/Services";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "../components/Navbar";
 import Skills from "../components/Skills";
 import Resume from "../components/Resume";
 import Portfolio from "../components/Portfolio";
