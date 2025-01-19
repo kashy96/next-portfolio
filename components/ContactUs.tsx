@@ -1,10 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { LinkedInIcon, YouTubeIcon, FacebookIcon, GitHubIcon } from "@/components/icons"
+import { Resend } from "resend";
+import { EmailTemplate } from "./email-template";
 
 const ContactUs: React.FC = () => {
+
+  // const resend = new Resend(process.env.RESEND_API_KEY);
+  const resend = new Resend('re_bVUxtmki_Jqp5sunAHbYmkxYUsYEUVG2j');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  
+  const handleChange = (key: string, value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [key]: value,
+    }));
+  };
+
+  const sendEmail = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();  // Optional: Prevents the default behavior (like page reload)
+  
+    try {
+      const emailTemplate = await EmailTemplate({
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+      });
+  
+      const { data, error } = await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: ['engrmuhammadkashif96@gmail.com'],
+        subject: formData.subject,
+        react: emailTemplate,
+      });
+      console.log('data is', data);
+      
+      if (error) {
+        console.log(error);
+        return alert("Error sending email: " + error);
+      }
+  
+      alert("Email sent successfully!");
+    } catch (error) {
+      console.log(error);
+      
+      console.error(error);
+      alert('Failed to generate email template');
+    }
+  };
+  
+  
+
   return (
     <section className=" text-white my-20">
         {/* Section Title */}
@@ -22,12 +75,13 @@ const ContactUs: React.FC = () => {
           {/* Left Section: Contact Form */}
           <div>
             <h3 className="text-2xl font-semibold mb-4">Just Say Hello</h3>
-            <form className="space-y-5" action="/api/contact" method="POST">
+            <div className="space-y-5">
               {/* Name Input */}
               <Input
                 type="text"
                 name="name"
                 placeholder="Your Name"
+                onChange={(e)=>handleChange('name', e.target.value)}
                 required
                 className="bg-gray-800 text-white"
               />
@@ -36,6 +90,7 @@ const ContactUs: React.FC = () => {
                 type="email"
                 name="email"
                 placeholder="Your Email"
+                onChange={(e)=>handleChange('email', e.target.value)}
                 required
                 className="bg-gray-800 text-white"
               />
@@ -44,6 +99,7 @@ const ContactUs: React.FC = () => {
                 type="text"
                 name="subject"
                 placeholder="Your Subject"
+                onChange={(e)=>handleChange('subject', e.target.value)}
                 required
                 className="bg-gray-800 text-white"
               />
@@ -52,17 +108,18 @@ const ContactUs: React.FC = () => {
                 name="message"
                 placeholder="Your Message"
                 rows={5}
+                onChange={(e)=>handleChange('message', e.target.value)}
                 required
                 className="bg-gray-800 text-white"
               />
               {/* Submit Button */}
               <Button
-                type="submit"
+                onClick={sendEmail}
                 className="bg-yellow-500 text-black hover:bg-yellow-600 w-full"
               >
                 Send Message
               </Button>
-            </form>
+            </div>
           </div>
 
           {/* Right Section: Contact Information */}

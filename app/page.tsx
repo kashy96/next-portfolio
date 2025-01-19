@@ -12,6 +12,7 @@ import Resume from "@/components/Resume";
 import Portfolio from "@/components/Portfolio";
 import ContactUs from "@/components/ContactUs";
 import Footer from "@/components/ui/Footer";
+import { TypeAnimation } from "react-type-animation";
 
 export default function Home() {
 
@@ -71,7 +72,14 @@ export default function Home() {
               </span>
             </h2>
             <p>
-            I am a Full Stack Developer with a strong focus on building scalable and efficient web applications.
+              <TypeAnimation
+                sequence={[
+                  `I am a Full Stack Developer with a strong focus on building scalable and efficient web applications.`,
+                  2000,
+                  '',
+                ]}
+                repeat={Infinity}
+              />
             </p>
           </div>
         </div>
