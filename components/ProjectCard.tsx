@@ -23,7 +23,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <motion.div>
     <div
-      className={`group relative flex max-w-[900px] flex-col md:flex-row items-center gap-8 bg-[#1A202E] p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 my-3 ${
+      className={`group relative flex flex-col md:flex-row items-center gap-8 bg-[#1A202E] p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 my-3 ${
         isImageOnLeft ? "md:flex-row" : "md:flex-row-reverse"
       }`}
     >
